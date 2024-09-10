@@ -24,6 +24,12 @@ app.get("/listings", async (req, res) => {
     res.json(listings);
 }); // Show all listings
 
+app.get("/listings/:id", async (req, res) => {
+    const id = req.params.id;
+    const listing = await Show_Listing(id);
+    res.json(listing);
+}); // Show a listing
+
 // Define a port to listen to, from the environment variable or a default one
 const PORT = process.env.PORT || 3000;
 
