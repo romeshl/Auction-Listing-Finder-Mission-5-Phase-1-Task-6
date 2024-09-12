@@ -30,6 +30,14 @@ app.get("/listings/:id", async (req, res) => {
     res.json(listing);
 }); // Show a listing
 
+app.post("/api/test", async (req, res) => {
+    const data = req.body;
+    console.log(data);
+    const test = {...data, name: "Roma", age: data.age + 30}
+    //const listing = await Add_Listing(data);
+    res.json(test);
+})  
+
 // Define a port to listen to, from the environment variable or a default one
 const PORT = process.env.PORT || 3000;
 
