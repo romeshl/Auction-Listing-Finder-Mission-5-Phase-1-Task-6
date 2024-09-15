@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80" 
+    restart: always
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend/.env
+    environment:
+      # Use 'host.docker.internal' for Windows/Mac or the local machine IP for Linux
+      - MONGODB_CONNECTION_STRING=mongodb://host.docker.internal:27017/trademe
+    restart: always
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

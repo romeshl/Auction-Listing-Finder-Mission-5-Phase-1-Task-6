@@ -6,6 +6,7 @@ const Listings = mongoose.model("Listings", ListingsSchema); // Create a new mon
 // Create a text index on the 'title' and 'description' fields
 Listings.collection.createIndex({ title: 'text', description: 'text' }, (err, result) => {
     if (err) {
+        console.log(process.env.PORT);
         throw new Error(err.message);
     }
 });
