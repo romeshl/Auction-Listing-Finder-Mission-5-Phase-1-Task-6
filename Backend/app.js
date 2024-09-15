@@ -25,10 +25,16 @@ app.get("/listings", async (req, res) => {
 }); // Show all listings
 
 app.get("/listings/:id", async (req, res) => {
-    const id = req.params.id;
-    const listing = await Show_Listing(id);
-    res.json(listing);
-}); // Show a listing
+	try {
+		const id = req.params.id;
+		const listing = await Show_Listing(id);
+		const array = [listing];
+		res.status(200).json(array);
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+		console.error(error.message);
+	}
+});
 
 app.post("/api/test", async (req, res) => {
     const data = req.body;
