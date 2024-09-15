@@ -1,5 +1,20 @@
 import Listings from "./ListingsCollection.js"; // Import the Listings model from the ListingsCollection file
 
+// Text search for listings
+export async function Search_Listings(searchString) {
+	try {
+		const results = await Listings.find({
+			$text: { $search: searchString },
+		});
+		if (results.length === 0) {
+			throw new Error("No listings found for the search query.");
+		}
+		return results;
+	} catch (err) {
+		throw new Error(err.message);
+	}
+}
+
 // Adds a new listing
 export async function Add_Listing(data) {
 	try {
