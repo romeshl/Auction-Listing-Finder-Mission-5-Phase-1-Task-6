@@ -11,15 +11,20 @@ Create an API that will retrieve items that match a specified search criteria fr
 * Colleciton is named **Listings**.
 * Fields in the **Listings** collection are: 
 ```
-{ title: text, description: text, start_price: number, reserve_price: number}
+{ title: text, description: text, start_price: number, reserve_price: number }
 ```
 * There is an **text** index in the **Listings** collection:
 ```
 { title: "text", description: "text" }
 ```
+### Seed data
+
+Seed data for the database can be added using the CLI app in the below link.
+
+https://github.com/romeshl/CLI-for-MongoDB-Mission-5-Phase-1-Version2
 
 ### Approach
-After a bit of playing around I used the **Text Search (With Text Index)** feature of **MongoDB** to complete this project.
+After a bit of playing around I used the **Text Search (With Text Index)** feature of **MongoDB** to complete this project. I have used React as the frontend and Express as the backend.
 
 ## Build with
 
@@ -32,7 +37,7 @@ After a bit of playing around I used the **Text Search (With Text Index)** featu
 * [dotenv](https://www.npmjs.com/package/dotenv)
 
 
-## Instructions
+# Instructions
 
 Use the following command to clone the repository. 
 ``` 
@@ -68,4 +73,20 @@ npm install
 and then the following command to start the frontend. 
 ```
 npm run dev
+```
+### Docker Compose
+
+Alternatively you can run *docker compose* after cloning the repo to run the app.
+
+```
+docker compose up --build
+```
+You will need the .env file in the backend folder. Please refer [backend](#backend) seciton for more info.
+
+Also note that you might have to modify the below section of **Compose.yml** depending on where you have your MongoDB database. The code below is used when you have your MongoDB database in your local machine.
+
+```
+    environment:
+      # Use 'host.docker.internal' for Windows/Mac or the local machine IP for Linux
+      - MONGODB_CONNECTION_STRING=mongodb://host.docker.internal:27017/trademe
 ```
